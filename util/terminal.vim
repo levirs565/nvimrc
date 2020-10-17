@@ -1,5 +1,14 @@
 set shell=powershell
 
+function RefreshLayout()
+  if g:NERDTree.IsOpen()
+    call NERDTreeFocus()
+    execute 'wincmd H'
+    execute 'vertical resize ' . g:NERDTreeWinSize
+    execute 'wincmd p'
+  endif
+endfunction
+
 let terminalbuffer='slider-terminal'
 function ToggleTerminal()
   let window=bufwinnr(g:terminalbuffer)
@@ -10,7 +19,9 @@ function ToggleTerminal()
     execute window . 'hide'
   else
     "window is not show, show it
-    execute 'belowright split'
+    execute 'botright new'
+    execute 'resize 10'
+    call RefreshLayout()
     
     if bufexists
       execute 'buffer ' . g:terminalbuffer
@@ -19,8 +30,6 @@ function ToggleTerminal()
       execute 'term'
       execute 'file ' . g:terminalbuffer
     endif
-
-    execute 'resize 10'
   endif
 endfunction
 
