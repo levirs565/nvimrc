@@ -25,6 +25,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
+Plug 'qpkorr/vim-bufkill'
 call plug#end()
 
 autocmd vimenter * NERDTree
