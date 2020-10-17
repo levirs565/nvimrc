@@ -1,4 +1,5 @@
 set number
+
 "set termguicolors
 if exists('+termguicolors')
   "let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -32,7 +33,13 @@ autocmd vimenter * NERDTree
 
 let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
 
-source util/index.vim 
+let g:srootdir=expand("<sfile>:p:h")
+function SourceLocal(relativePath)
+  let fullPath = g:srootdir . '/'. a:relativePath
+  exec 'source ' . fullPath
+endfunction
+
+call SourceLocal('util/index.vim') 
 
 colorscheme gruvbox
 nmap <M-1> :NERDTreeToggle<CR>

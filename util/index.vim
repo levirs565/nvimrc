@@ -1,3 +1,3 @@
-source util/choice.vim
-source util/color.vim
-source util/terminal.vim
+call SourceLocal('util/choice.vim')
+call SourceLocal('util/color.vim')
+call SourceLocal('util/terminal.vim')
