@@ -87,7 +87,7 @@ function UpdateColorMode()
   
   if g:color_mode==0
     let currentHour=strftime('%H')
-    let isLight=currentHour<=18
+    let isLight=currentHour<18
   endif
 
   if isLight
@@ -107,3 +107,4 @@ nnoremap ` :call ToggleColorMode()<CR>
 autocmd ColorSchemePre * :call UpdateColorMode()
 
 colorscheme gruvbox
+nmap <M-1> :NERDTreeToggle<CR>
