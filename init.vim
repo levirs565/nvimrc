@@ -32,6 +32,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'qpkorr/vim-bufkill'
 Plug 'kassio/neoterm'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 autocmd vimenter * NERDTree
