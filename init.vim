@@ -17,6 +17,10 @@ endif
 "  autocmd VimEnter * :Vexplore
 "augroup END
 
+"set shell=powershell
+"let g:neoterm_shell='C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
+
+
 call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
@@ -27,11 +31,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'qpkorr/vim-bufkill'
+Plug 'kassio/neoterm'
 call plug#end()
 
 autocmd vimenter * NERDTree
 
 let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
+let g:airline_powerline_fonts = 1
 
 let g:srootdir=expand("<sfile>:p:h")
 function SourceLocal(relativePath)
