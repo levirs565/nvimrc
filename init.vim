@@ -51,3 +51,4 @@ call SourceLocal('util/index.vim')
 
 colorscheme gruvbox
 nmap <M-1> :NERDTreeToggle<CR>
+autocmd filetype fugitive execute "wincmd L | vertical resize 31" 
