@@ -37,12 +37,21 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 let g:vimwiki_list = [{'path': '~/VimWiki/',
                       \ 'syntax': 'markdown', 'ext': '.wiki.md'}]
-
-autocmd vimenter * NERDTree
+let g:startify_bookmarks = systemlist("cut -sd\" \" -f 2 ".$HOME."/.NERDTreeBookmarks")
+let g:startify_commands = [['VimWiki Index', 'VimwikiIndex']]
+let g:startify_lists = [
+			\ { 'type': 'commands',  'header': ['   Commands'       ]},
+			\ { 'type': 'bookmarks', 'header': ['   Bookmakrs'      ]},
+			\ { 'type': 'sessions',  'header': ['   Sessions'       ]},
+			\ { 'type': 'files',     'header': ['   MRU'            ]},
+			\ { 'type': 'dir',       'header': ['   MRU ' . getcwd()]}
+			\]
+"autocmd vimenter * NERDTree
 
 let g:gitgutter_grep = $GIT_INSTALL_ROOT . '\usr\bin\grep.exe'
 let g:gitgutter_git_executable = $GIT_INSTALL_ROOT . '\cmd\git.exe'
