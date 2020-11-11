@@ -7,6 +7,9 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+set nocompatible
+filetype plugin on
+syntax on
 "let g:netrw_banner = 0
 "let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
@@ -33,7 +36,11 @@ Plug 'bling/vim-bufferline'
 Plug 'qpkorr/vim-bufkill'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
 call plug#end()
+
+let g:vimwiki_list = [{'path': '~/VimWiki/',
+                      \ 'syntax': 'markdown', 'ext': '.wiki.md'}]
 
 autocmd vimenter * NERDTree
 
