@@ -43,6 +43,7 @@ call plug#end()
 let g:vimwiki_list = [{'path': '~/VimWiki/',
                       \ 'syntax': 'markdown', 'ext': '.wiki.md'}]
 let g:vimwiki_auto_chdir = 1
+let g:vimwiki_dir_link = 'index'
 let g:startify_bookmarks = systemlist("cut -sd\" \" -f 2 ".$HOME."/.NERDTreeBookmarks")
 let g:startify_commands = [['VimWiki Index', 'VimwikiIndex']]
 let g:startify_lists = [
