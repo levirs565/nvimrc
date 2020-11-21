@@ -70,6 +70,7 @@ function SourceLocal(relativePath)
 endfunction
 
 call SourceLocal('util/index.vim') 
+call SourceLocal('init.d/filetype.vim')
 
 colorscheme gruvbox
 nmap <M-1> :NERDTreeToggle<CR>
