@@ -1,11 +1,3 @@
-function ToggleColorScheme()
-  let color_list=getcompletion('', 'color')
-  let color_current=index(color_list, g:colors_name)
-  
-  let color_index=CreateChoice('Select color scheme:', color_list, color_current)
-  execute 'colorscheme ' . color_list[color_index]
-endfunction
-
 " mode:
 " 0, automatic
 " 1, light
@@ -26,12 +18,4 @@ function UpdateColorMode()
   endif
 endfunction
 
-function ToggleColorMode()
-  let g:color_mode=CreateChoice('Select color mode:', ['Default', 'Light', 'Dark'], g:color_mode)
-  :call UpdateColorMode()
-endfunction
-
-nnoremap <M-`> :call ToggleColorScheme()<CR>
-nnoremap ` :call ToggleColorMode()<CR> 
 autocmd ColorSchemePre * :call UpdateColorMode()
-
