@@ -10,6 +10,12 @@ endif
 set nocompatible
 filetype plugin on
 syntax on
+set linebreak
+set autoread
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set title
 "let g:netrw_banner = 0
 "let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
