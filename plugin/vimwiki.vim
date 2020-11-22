@@ -13,3 +13,4 @@ autocmd filetype vimwiki nmap <buffer><silent> <Backspace>
 			\:if bufnr("%") != lastbuffer<CR>
 			\exe "bdelete".lastbuffer<CR>
 			\endif<CR>
+autocmd filetype vimwiki setlocal spell spelllang=id
