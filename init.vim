@@ -52,7 +52,6 @@ call plug#end()
 
 let g:gitgutter_grep = $GIT_INSTALL_ROOT . '\usr\bin\grep.exe'
 let g:gitgutter_git_executable = $GIT_INSTALL_ROOT . '\cmd\git.exe'
-let g:airline_powerline_fonts = 1
 
 let g:srootdir=expand("<sfile>:p:h")
 function SourceLocal(relativePath)
@@ -62,6 +61,7 @@ endfunction
 
 call SourceLocal('util/index.vim') 
 call SourceLocal('init.d/filetype.vim')
+call SourceLocal('plugin/airline.vim')
 call SourceLocal('plugin/fugitive.vim')
 call SourceLocal('plugin/fzf.vim')
 call SourceLocal('plugin/startify.vim')
