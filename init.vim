@@ -18,6 +18,7 @@ set softtabstop=4
 set title
 set splitright
 set splitbelow
+set updatetime=1000
 "let g:netrw_banner = 0
 "let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
