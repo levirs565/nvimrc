@@ -62,11 +62,6 @@ endfunction
 
 call SourceLocal('util/index.vim') 
 call SourceLocal('init.d/filetype.vim')
-call SourceLocal('plugin/airline.vim')
-call SourceLocal('plugin/fugitive.vim')
-call SourceLocal('plugin/fzf.vim')
-call SourceLocal('plugin/startify.vim')
-call SourceLocal('plugin/vimwiki.vim')
 
 colorscheme gruvbox
 nmap <M-1> :NERDTreeToggle<CR>
