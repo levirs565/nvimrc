@@ -38,8 +38,9 @@ if &shell != 'cmd.exe'
   set ssl
 endif
 
+let g:srootdir=expand("<sfile>:p:h")
 
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin(g:srootdir . '/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'paulondc/vim-nerdtree-open-externally'
@@ -60,7 +61,6 @@ call plug#end()
 let g:gitgutter_grep = $GIT_INSTALL_ROOT . '\usr\bin\grep.exe'
 let g:gitgutter_git_executable = $GIT_INSTALL_ROOT . '\cmd\git.exe'
 
-let g:srootdir=expand("<sfile>:p:h")
 function SourceLocal(relativePath)
   let fullPath = g:srootdir . '/'. a:relativePath
   exec 'source ' . fullPath
