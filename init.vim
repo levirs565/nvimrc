@@ -44,7 +44,7 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'paulondc/vim-nerdtree-open-externally'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
