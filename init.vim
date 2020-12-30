@@ -32,6 +32,12 @@ set updatetime=1000
 "set shell=powershell
 "let g:neoterm_shell='C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
 
+if &shell != 'cmd.exe'
+  set shcf=-c
+  set sxq=
+  set ssl
+endif
+
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'morhetz/gruvbox'
