@@ -1,4 +1,9 @@
-let g:neoterm_shell = $GIT_INSTALL_ROOT . "/bin/bash"
+if &shell == 'cmd.exe'
+  let g:neoterm_shell = $GIT_INSTALL_ROOT . "/bin/bash"
+else
+  let g:neoterm_shell = "bash"
+  let g:neoterm_marker = ';#neoterm'
+endif
 let g:neoterm_default_mod = "botright"
 let g:neoterm_size = 10
 let g:neoterm_autoscroll = 1
