@@ -58,7 +58,7 @@ call plug#end()
 
 "autocmd vimenter * NERDTree
 
-function SourceLocal(relativePath)
+function! SourceLocal(relativePath)
   let fullPath = g:srootdir . '/'. a:relativePath
   exec 'source ' . fullPath
 endfunction
