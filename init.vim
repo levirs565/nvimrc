@@ -54,6 +54,7 @@ Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'mhinz/vim-startify'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 "autocmd vimenter * NERDTree
