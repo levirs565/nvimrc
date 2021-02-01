@@ -19,3 +19,23 @@ function UpdateColorMode()
 endfunction
 
 autocmd ColorSchemePre * :call UpdateColorMode()
+
+function GetHiColor(group, what)
+  return synIDattr(synIDtrans(hlID(a:group)), a:what)
+endf
+
+function UpdateWindowColor()
+  let bgColor=GetHiColor('Normal', 'bg#')
+  let inactiveBgMix=GetHiColor('Normal', 'fg#')
+  let inactiveBgColor=color#Mix(bgColor, inactiveBgMix, 0.04)
+  call execute("hi ActiveWindow guibg=".bgColor)
+  call execute("hi InactiveWindow guibg=".inactiveBgColor)
+endf
+
+autocmd ColorScheme * call UpdateWindowColor()
+
+autocmd WinEnter * call ChangeWinHL(winnr('#'))
+
+function! ChangeWinHL(win)
+  call setwinvar(a:win, "&winhighlight", "Normal:ActiveWindow,NormalNC:InactiveWindow")
+endfunction

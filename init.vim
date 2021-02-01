@@ -55,6 +55,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
+Plug 'romgrk/lib.kom'
 call plug#end()
 
 "autocmd vimenter * NERDTree
