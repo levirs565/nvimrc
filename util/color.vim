@@ -27,7 +27,6 @@ command! ColorMode call fzf#run(fzf#wrap({
       \ 'source': ['auto', 'light', 'dark'],
       \ 'sink': function("SetColorMode")
       \}))
-autocmd ColorSchemePre * :call UpdateColorMode()
 
 function GetHiColor(group, what)
   return synIDattr(synIDtrans(hlID(a:group)), a:what)
@@ -41,9 +40,12 @@ function UpdateWindowColor()
   call execute("hi InactiveWindow guibg=".inactiveBgColor)
 endf
 
-autocmd ColorScheme * call UpdateWindowColor()
-
-autocmd WinEnter * call ChangeWinHL(winnr('#'))
+augroup ColorUtil
+  autocmd!
+  autocmd ColorSchemePre * :call UpdateColorMode()
+  autocmd ColorScheme * call UpdateWindowColor()
+  autocmd WinEnter * call ChangeWinHL(winnr('#'))
+augroup END
 
 function! ChangeWinHL(win)
   call setwinvar(a:win, "&winhighlight", "Normal:ActiveWindow,NormalNC:InactiveWindow")
