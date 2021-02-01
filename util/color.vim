@@ -1,12 +1,12 @@
 " mode:
-" 0, automatic
-" 1, light
-" 2, dark
-let g:color_mode=0
+" auto
+" light
+" dark
+let g:color_mode="light"
 function UpdateColorMode()
-  let isLight=g:color_mode==1
+  let isLight=g:color_mode=="light"
   
-  if g:color_mode==0
+  if g:color_mode=="auto"
     let currentHour=strftime('%H')
     let isLight=currentHour<18
   endif
@@ -18,6 +18,15 @@ function UpdateColorMode()
   endif
 endfunction
 
+function SetColorMode(mode)
+  let g:color_mode=a:mode
+  call UpdateColorMode()
+endf
+
+command! ColorMode call fzf#run(fzf#wrap({
+      \ 'source': ['auto', 'light', 'dark'],
+      \ 'sink': function("SetColorMode")
+      \}))
 autocmd ColorSchemePre * :call UpdateColorMode()
 
 function GetHiColor(group, what)
