@@ -2,7 +2,7 @@
 " auto
 " light
 " dark
-let g:color_mode="light"
+let g:color_mode="auto"
 function UpdateColorMode()
   let isLight=g:color_mode=="light"
   
