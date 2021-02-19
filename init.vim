@@ -69,4 +69,6 @@ call SourceLocal('util/index.vim')
 call SourceLocal('init.d/filetype.vim')
 
 colorscheme gruvbox
+source ~/.nvim_color
+
 nmap <M-1> :NERDTreeToggle<CR>
