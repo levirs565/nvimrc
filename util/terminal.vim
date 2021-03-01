@@ -1,5 +1,5 @@
 if &shell == 'cmd.exe'
-  let g:neoterm_shell = $GIT_INSTALL_ROOT . "/bin/bash"
+  let g:neoterm_shell = "pwsh"
 else
   let g:neoterm_shell = "bash"
   let g:neoterm_marker = ';#neoterm'
