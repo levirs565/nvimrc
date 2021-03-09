@@ -58,6 +58,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'romgrk/lib.kom'
+Plug 'terrortylor/nvim-comment'
 call plug#end()
 
 "autocmd vimenter * NERDTree
@@ -74,3 +75,6 @@ colorscheme gruvbox
 source ~/.nvim_color
 
 nmap <M-1> :NERDTreeToggle<CR>
+
+
+lua require("plugins.comment")
