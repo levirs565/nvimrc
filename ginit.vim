@@ -1,5 +1,5 @@
 if exists('g:GuiLoaded')
-  GuiFont! FiraCode NF:h12
+  GuiFont! JetBrainsMono NF:h11
   GuiTabline 0
   GuiPopupmenu 0
 endif
