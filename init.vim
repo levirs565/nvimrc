@@ -37,6 +37,7 @@ Plug 'romgrk/lib.kom'
 Plug 'terrortylor/nvim-comment'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'romgrk/barbar.nvim'
 call plug#end()
 
 "autocmd vimenter * NERDTree
@@ -57,3 +58,4 @@ nmap <M-1> :NvimTreeToggle<CR>
 
 lua require("plugins.comment")
 lua require("plugins.tree")
+lua require("mapping")
