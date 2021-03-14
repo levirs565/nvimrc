@@ -38,6 +38,8 @@ Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'romgrk/lib.kom'
 Plug 'terrortylor/nvim-comment'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 "autocmd vimenter * NERDTree
@@ -53,7 +55,8 @@ call SourceLocal('init.d/filetype.vim')
 colorscheme gruvbox
 source ~/.nvim_color
 
-nmap <M-1> :NERDTreeToggle<CR>
+nmap <M-1> :NvimTreeToggle<CR>
 
 
 lua require("plugins.comment")
+lua require("plugins.tree")
