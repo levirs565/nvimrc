@@ -25,8 +25,6 @@ let g:srootdir=expand("<sfile>:p:h")
 
 call plug#begin(g:srootdir . '/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
-Plug 'paulondc/vim-nerdtree-open-externally'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
