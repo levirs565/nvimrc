@@ -53,9 +53,7 @@ call SourceLocal('init.d/filetype.vim')
 colorscheme gruvbox
 source ~/.nvim_color
 
-nmap <M-1> :NvimTreeToggle<CR>
-
-
 lua require("plugins.comment")
 lua require("plugins.tree")
 lua require("mapping")
+lua require("window")
