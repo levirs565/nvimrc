@@ -14,3 +14,5 @@ end
 map_window("<A-1>", "toggle_tree")
 map_window("<A-t>", "toggle_terminal")
 map_window("<A-k>", "toggle_git")
+
+set("t", "<Esc>", "<C-\\><C-N>", {noremap = true})
