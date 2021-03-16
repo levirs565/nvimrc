@@ -47,7 +47,6 @@ function! SourceLocal(relativePath)
   exec 'source ' . fullPath
 endfunction
 
-call SourceLocal('util/index.vim') 
 call SourceLocal('init.d/filetype.vim')
 
 colorscheme gruvbox
