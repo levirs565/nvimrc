@@ -16,3 +16,10 @@ map_window("<A-t>", "toggle_terminal")
 map_window("<A-k>", "toggle_git")
 
 set("t", "<Esc>", "<C-\\><C-N>", {noremap = true})
+
+local function map_telescope(key, fn_name)
+  set("n", key, "<CMD>lua require('telescope.builtin')." .. fn_name .. "()<CR>", {})
+end
+
+map_telescope("<A-n>", "find_files")
+map_telescope("<A-f>", "live_grep")

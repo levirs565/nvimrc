@@ -26,8 +26,6 @@ let g:srootdir=expand("<sfile>:p:h")
 call plug#begin(g:srootdir . '/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
@@ -38,6 +36,9 @@ Plug 'terrortylor/nvim-comment'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 "autocmd vimenter * NERDTree
