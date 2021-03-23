@@ -51,9 +51,12 @@ endfunction
 call SourceLocal('init.d/filetype.vim')
 
 colorscheme gruvbox
-source ~/.nvim_color
+if filereadable(fnamemodify("~/.nvim_color", ":p"))
+  source ~/.nvim_color
+endif
 
 lua require("plugins.comment")
 lua require("plugins.tree")
+lua require("plugins.telescope")
 lua require("mapping")
 lua require("window")
