@@ -9,7 +9,7 @@ vim.o.title = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.updatetime = 1000
-vim.o.completeopt = "menu,preview,noinsert"
+vim.o.completeopt = "menu,menuone,preview,noinsert,noselect"
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 
