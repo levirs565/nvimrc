@@ -40,6 +40,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 "autocmd vimenter * NERDTree
@@ -60,5 +61,6 @@ lua require("plugins.comment")
 lua require("plugins.tree")
 lua require("plugins.telescope")
 lua require("plugins.compe")
+lua require("plugins.lspconfig")
 lua require("mapping")
 lua require("window")

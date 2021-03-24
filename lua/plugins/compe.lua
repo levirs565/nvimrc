@@ -21,6 +21,7 @@ require'compe'.setup {
     nvim_lua = true;
     spell = true;
     tags = true;
+    nvim_lsp = true;
   };
 }
 
