@@ -1,5 +1,5 @@
 vim.g.nvim_tree_side = 'left'
-vim.g.nvim_tree_width = 40 -- 30 by default
+vim.g.nvim_tree_width = 35 
 vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } 
 vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_auto_close = 0
@@ -20,22 +20,20 @@ vim.g.nvim_tree_show_icons = {
     folders = 1,
     files = 1
 }
--- 
--- vim.g.nvim_tree_icons = {
---     \ 'default': '',
---     \ 'symlink': '',
---     \ 'git': {
---     \   'unstaged': "✗",
---     \   'staged': "✓",
---     \   'unmerged': "",
---     \   'renamed': "➜",
---     \   'untracked': "★"
---     \   },
---     \ 'folder': {
---     \   'default': "",
---     \   'open': "",
---     \   'empty': "",
---     \   'empty_open': "",
---     \   'symlink': "",
---     \   }
---     \ }
+vim.g.nvim_tree_icons = { 
+    default= "",
+    symlink = "", 
+    git = { 
+        unstaged = "✗",
+        staged = "✓",
+        unmerged = "",
+        renamed = "➜",
+        untracked = "★" 
+    }, 
+    folder = {
+        default = "", 
+        open = "", 
+        empty = "", 
+        empty_open = "", 
+        symlink = "", }
+}
