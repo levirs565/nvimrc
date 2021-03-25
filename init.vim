@@ -43,15 +43,6 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
-"autocmd vimenter * NERDTree
-
-function! SourceLocal(relativePath)
-  let fullPath = g:srootdir . '/'. a:relativePath
-  exec 'source ' . fullPath
-endfunction
-
-call SourceLocal('init.d/filetype.vim')
-
 colorscheme gruvbox
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
   source ~/.nvim_color
