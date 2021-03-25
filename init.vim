@@ -1,25 +1,10 @@
-"set termguicolors
 if exists('+termguicolors')
-  "let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  "let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
 filetype plugin on
 syntax on
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
 lua require("setting")
-
-"set shell=powershell
-"let g:neoterm_shell='C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
 
 let g:srootdir=expand("<sfile>:p:h")
 
