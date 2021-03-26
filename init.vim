@@ -14,7 +14,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
-Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'romgrk/lib.kom'
 Plug 'terrortylor/nvim-comment'
@@ -27,6 +26,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'glepnir/dashboard-nvim'
 call plug#end()
 
 colorscheme gruvbox
@@ -39,5 +39,6 @@ lua require("plugins.tree")
 lua require("plugins.telescope")
 lua require("plugins.compe")
 lua require("plugins.lspconfig")
+lua require("plugins.dashboard")
 lua require("mapping")
 lua require("window")
