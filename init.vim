@@ -9,13 +9,11 @@ lua require("setting")
 let g:srootdir=expand("<sfile>:p:h")
 
 call plug#begin(g:srootdir . '/plugged')
-Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
-Plug 'romgrk/lib.kom'
 Plug 'terrortylor/nvim-comment'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
@@ -28,12 +26,14 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'rktjmp/lush.nvim'
+Plug 'npxbr/gruvbox.nvim'
 call plug#end()
 
-colorscheme gruvbox
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
   source ~/.nvim_color
 endif
+colorscheme gruvbox
 
 lua require("plugins.comment")
 lua require("plugins.tree")
