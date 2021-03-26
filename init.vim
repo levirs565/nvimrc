@@ -26,6 +26,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-telescope/telescope-project.nvim'
 call plug#end()
 
 colorscheme gruvbox

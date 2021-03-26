@@ -27,6 +27,8 @@ end
 
 map_telescope("<A-n>", "find_files")
 map_telescope("<A-f>", "live_grep")
+set("n", "<A-p>", "<CMD>lua require('telescope').extensions.project.project()<CR>", opts)
+
 
 local function map_lsp(key, fn_name)
   set("n", key, "<CMD>lua vim.lsp." .. fn_name .. "()<CR>", opts)
