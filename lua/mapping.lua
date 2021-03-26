@@ -34,23 +34,27 @@ local function map_lsp(key, fn_name)
   set("n", key, "<CMD>lua vim.lsp." .. fn_name .. "()<CR>", opts)
 end
 
+local function map_lsp_saga(key, module, fn_name)
+  set("n", key, "<CMD>lua require('lspsaga." .. module .. "')." .. fn_name .. "()<CR>", opts)
+end
+
 local function map_lsp_buf(key, fn_name)
   map_lsp(key, "buf." .. fn_name)
 end
 
 local function map_lsp_diag(key, fn_name)
-  map_lsp(key, "diagnostic." .. fn_name)
+  map_lsp_saga(key, "diagnostic", fn_name)
 end
 
 map_lsp_buf("gd", "type_definition")
 map_lsp_buf("gD", "definition")
 map_lsp_buf("gi", "implementation")
 map_lsp_buf("gr", "references")
-map_lsp_buf("K", "hover")
-map_lsp_buf("<C-k>", "signature_help")
-map_lsp_buf("<leader>rn", "rename")
+map_lsp_saga("K", "hover", "render_hover_doc")
+map_lsp_saga("<C-k>", "signaturehelp", "signature_help")
+map_lsp_saga("<leader>rn", "rename" , "rename")
 map_lsp_buf("<leader>f", "formatting")
 map_lsp_diag("<leader>e", "show_line_diagnostics")
-map_lsp_diag("<leader>le", "set_loclist")
-map_lsp_diag("[d", "goto_prev")
-map_lsp_diag("]d", "goto_next")
+map_lsp("<leader>le", "diagnostic.set_loclist")
+map_lsp_diag("[d", "lsp_jump_diagnostic_prev")
+map_lsp_diag("]d", "lsp_jump_diagnostic_next")

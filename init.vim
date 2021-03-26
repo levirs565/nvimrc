@@ -27,6 +27,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'glepnir/dashboard-nvim'
+Plug 'glepnir/lspsaga.nvim'
 call plug#end()
 
 colorscheme gruvbox
@@ -39,6 +40,7 @@ lua require("plugins.tree")
 lua require("plugins.telescope")
 lua require("plugins.compe")
 lua require("plugins.lspconfig")
+lua require("plugins.lspsaga")
 lua require("plugins.dashboard")
 lua require("mapping")
 lua require("window")
