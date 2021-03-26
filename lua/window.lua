@@ -39,4 +39,11 @@ function M.toggle_git()
   )
 end
 
+function M.configure_fugitive_window()
+  if not vim.b.win_configured then
+    vim.api.nvim_command("wincmd L | vertical resize 31" )
+    vim.b.win_configured = true
+  end
+end
+
 return M
