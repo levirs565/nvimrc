@@ -1,28 +1,28 @@
 local set = vim.api.nvim_set_keymap
 local opts = {
   noremap = true,
-  -- silent = true
+  silent = true
 }
 
-set("n", "<A-l>", "<CMD>BufferNext<CR>", {noremap = true, silent = true})
-set("n", "<A-h>", "<CMD>BufferPrevious<CR>", {noremap = true, silent = true})
-set("n", "<Leader>q", "<CMD>BufferClose<CR>", {noremap = true, silent = true})
-set("n", "<Leader>qo", "<CMD>BufferCloseAllButCurrent<CR>", {noremap = true, silent = true})
-set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", {noremap = true, silent = true})
-set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", {noremap = true})
+set("n", "<A-l>", "<CMD>BufferNext<CR>", opts)
+set("n", "<A-h>", "<CMD>BufferPrevious<CR>", opts)
+set("n", "<Leader>q", "<CMD>BufferClose<CR>", opts)
+set("n", "<Leader>qo", "<CMD>BufferCloseAllButCurrent<CR>", opts)
+set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
+set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", opts)
 
 local function map_window(key, fn_name) 
-  set("n", key, "<CMD>lua require('window')." .. fn_name .. "()<CR>", {})
+  set("n", key, "<CMD>lua require('window')." .. fn_name .. "()<CR>", opts)
 end
 
 map_window("<A-1>", "toggle_tree")
 map_window("<A-t>", "toggle_terminal")
 map_window("<A-k>", "toggle_git")
 
-set("t", "<Esc>", "<C-\\><C-N>", {noremap = true})
+set("t", "<Esc>", "<C-\\><C-N>", opts)
 
 local function map_telescope(key, fn_name)
-  set("n", key, "<CMD>lua require('telescope.builtin')." .. fn_name .. "()<CR>", {})
+  set("n", key, "<CMD>lua require('telescope.builtin')." .. fn_name .. "()<CR>", opts)
 end
 
 map_telescope("<A-n>", "find_files")
