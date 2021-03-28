@@ -18,6 +18,6 @@ vim.g.dashboard_custom_section = {
   },
   new_file = {
     description = {fill(" New File")},
-    command = "dashboard#handler#new_file"
+    command = "DashboardNewFile"
   }
 }
