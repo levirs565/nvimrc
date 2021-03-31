@@ -4,6 +4,14 @@ local opts = {
   silent = true
 }
 
+local function disable_key(key)
+  set("n", key, "<Nop>", opts)
+end
+
+disable_key("<Up>")
+disable_key("<Left>")
+disable_key("<Right>")
+disable_key("<Down>")
 set("n", "<A-l>", "<CMD>BufferNext<CR>", opts)
 set("n", "<A-h>", "<CMD>BufferPrevious<CR>", opts)
 set("n", "<Leader>q", "<CMD>BufferClose<CR>", opts)
