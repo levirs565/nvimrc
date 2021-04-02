@@ -28,6 +28,7 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'rktjmp/lush.nvim'
 Plug 'npxbr/gruvbox.nvim'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
@@ -42,5 +43,6 @@ lua require("plugins.compe")
 lua require("plugins.lspconfig")
 lua require("plugins.lspsaga")
 lua require("plugins.dashboard")
+lua require("plugins.galaxyline")
 lua require("mapping")
 lua require("window")
