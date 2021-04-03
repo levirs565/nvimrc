@@ -8,11 +8,51 @@ local function get_color(name)
   return gruvbox["Gruvbox" .. name].fg
 end
 
+local mode_alias = {
+  n = "NORMAL",
+  i = "INSERT",
+  v = "VISUAL",
+  V = "VISUAL-LINE",
+  [""] = "VISUAL-BLOCK",
+  c = "COMMAND"
+}
+local mode_color = {
+  n = "Yellow",
+  i = "Blue",
+  v = "Orange",
+  V = "Orange",
+  [""] = "Orange",
+  c = "Gray"
+}
+
 line.section.left = {
   {
+    Mode = {
+      provider = function () 
+        local mode = vim.fn.mode()
+        vim.api.nvim_command('hi GalaxyMode guibg='..get_color(mode_color[mode]))
+        return "  " .. mode_alias[mode] .. " "
+      end,
+      highlight = {
+        function () 
+          return get_color("Bg0")
+        end
+      }
+    }
+  },
+  {
     FileName = {
-      provider = fileinfo.get_current_file_name,
+      provider = function ()
+        return "  " .. fileinfo.get_current_file_name() .. " "
+      end,
       condition = condition.buffer_not_empty
+    }
+  },
+  {
+    Blank = {
+      provider = function ()
+        return " "
+      end
     }
   }
 }
