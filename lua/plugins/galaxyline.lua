@@ -11,6 +11,7 @@ end
 local mode_alias = {
   n = "NORMAL",
   i = "INSERT",
+  t = "TERMINAL",
   v = "VISUAL",
   V = "VISUAL-LINE",
   [""] = "VISUAL-BLOCK",
@@ -19,6 +20,7 @@ local mode_alias = {
 local mode_color = {
   n = "Yellow",
   i = "Blue",
+  t = "Blue",
   v = "Orange",
   V = "Orange",
   [""] = "Orange",
@@ -30,8 +32,16 @@ line.section.left = {
     Mode = {
       provider = function () 
         local mode = vim.fn.mode()
-        vim.api.nvim_command('hi GalaxyMode guibg='..get_color(mode_color[mode]))
-        return "  " .. mode_alias[mode] .. " "
+        local color = mode_color[mode]
+        local text = mode_alias[mode]
+        if color == nil then
+          color = "Yellow"
+        end
+        if text == nil then
+          text = "UNKNOWN:" .. mode
+        end
+        vim.api.nvim_command('hi GalaxyMode guibg='..get_color(color))
+        return "  " .. text .. " "
       end,
       highlight = {
         function () 
