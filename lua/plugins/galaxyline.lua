@@ -1,11 +1,10 @@
-local gruvbox = require("gruvbox")
 local line = require("galaxyline")
 local fileinfo = require("galaxyline.provider_fileinfo")
 local buffer = require("galaxyline.provider_buffer")
 local condition = require("galaxyline.condition")
 
 local function get_color(name)
-  return gruvbox["Gruvbox" .. name].fg
+  return require("gruvbox")["Gruvbox" .. name].fg
 end
 
 local mode_alias = {
