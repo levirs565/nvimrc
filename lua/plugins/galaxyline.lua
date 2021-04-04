@@ -7,6 +7,12 @@ local function get_color(name)
   return require("gruvbox")["Gruvbox" .. name].fg
 end
 
+local function call_get_color(name)
+  return function () 
+    return get_color(name) 
+  end
+end
+
 local mode_alias = {
   n = "NORMAL",
   i = "INSERT",
@@ -52,11 +58,19 @@ line.section.left = {
     }
   },
   {
-    FileName = {
+    FileIcon = {
       provider = function ()
-        return "  " .. fileinfo.get_current_file_name() .. " "
+        return "  " .. fileinfo.get_file_icon()
       end,
+      highlight = {fileinfo.get_file_icon_color, call_get_color("Bg1")},
       condition = condition.buffer_not_empty
+    }
+  },
+  {
+    FileName = {
+      provider = fileinfo.get_current_file_name,
+      condition = condition.buffer_not_empty,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
     }
   },
   {
@@ -83,16 +97,46 @@ line.section.right = {
   }
 }
 
+local function condition_is_special_ft()
+  return vim.fn.index(line.short_line_list, vim.bo.filetype) ~= -1
+end
+
+
+local function condition_is_not_special_ft()
+  return not condition_is_special_ft()
+end
+  
+
 line.short_line_list = {"dashboard", "NvimTree", "fugitive", "gitcommit"}
 line.section.short_line_left = {
   {
     BufferIcon = {
-      provider = buffer.get_buffer_type_icon
+      provider = buffer.get_buffer_type_icon,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
+      condition = condition_is_special_ft
     }
   },
   {
     BufferType = {
-      provider = buffer.get_buffer_filetype
+      provider = buffer.get_buffer_filetype,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
+      condition = condition_is_special_ft
     }
-  }
+  },
+  {
+    FileIcon = {
+      provider = function ()
+        return "  " .. fileinfo.get_file_icon()
+      end,
+      highlight = {fileinfo.get_file_icon_color, call_get_color("Bg1")},
+      condition = condition_is_not_special_ft
+    }
+  },
+  {
+    FileName = {
+      provider = fileinfo.get_current_file_name,
+      condition = condition_is_not_special_ft,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
+    }
+  },
 }
