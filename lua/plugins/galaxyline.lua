@@ -86,13 +86,15 @@ line.section.right = {
   {
     LineColumn = {
       provider = function ()
-        return string.format("  %s ", fileinfo.line_column())
-      end
+        return string.format("   %s ", fileinfo.line_column())
+      end,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
     }
   },
   {
     LinePercent = {
-      provider = fileinfo.current_line_percent
+      provider = fileinfo.current_line_percent,
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
     }
   }
 }
