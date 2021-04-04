@@ -45,7 +45,9 @@ line.section.left = {
       highlight = {
         function () 
           return get_color("Bg0")
-        end
+        end,
+        "#FFFFFF",
+        "bold"
       }
     }
   },
