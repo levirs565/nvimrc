@@ -18,6 +18,7 @@ set("n", "<Leader>q", "<CMD>BufferClose<CR>", opts)
 set("n", "<Leader>qo", "<CMD>BufferCloseAllButCurrent<CR>", opts)
 set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
 set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", opts)
+set("n", "<Leader>w", "<CMD>write<CR>", opts)
 
 local function map_window(key, fn_name) 
   set("n", key, "<CMD>lua require('window')." .. fn_name .. "()<CR>", opts)
