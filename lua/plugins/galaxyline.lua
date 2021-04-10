@@ -126,16 +126,16 @@ line.section.short_line_left = {
     }
   },
   {
-    FileIcon = {
+    InactiveFileIcon = {
       provider = function ()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = {fileinfo.get_file_icon_color, call_get_color("Bg1")},
+      highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
       condition = condition_is_not_special_ft
     }
   },
   {
-    FileName = {
+    InactiveFileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition_is_not_special_ft,
       highlight = {call_get_color("Fg1"), call_get_color("Bg1")},
