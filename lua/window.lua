@@ -23,14 +23,6 @@ function M.toggle_tree()
   smart_toggle("NvimTree", tree.open, tree.close)
 end
 
-function M.toggle_terminal()
-  smart_toggle(
-    "neoterm",
-    function() vim.api.nvim_command("Topen") end,
-    function() vim.api.nvim_command("Tclose") end
-  )
-end
-
 function M.toggle_git()
   smart_toggle(
     "fugitive",

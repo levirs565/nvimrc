@@ -10,7 +10,6 @@ let g:srootdir=expand("<sfile>:p:h")
 
 call plug#begin(g:srootdir . '/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
