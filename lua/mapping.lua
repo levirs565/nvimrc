@@ -12,8 +12,16 @@ disable_key("<Up>")
 disable_key("<Left>")
 disable_key("<Right>")
 disable_key("<Down>")
-set("n", "<A-l>", "<CMD>BufferNext<CR>", opts)
-set("n", "<A-h>", "<CMD>BufferPrevious<CR>", opts)
+
+local function map_buf_nav(key, buffer, floaterm)
+  local cmd = string.format(
+    [[<CMD>if &filetype == "floaterm" | exe "Floaterm%s" | else | exe "Buffer%s" | endif<CR>]],
+    floaterm, buffer)
+  set("n", key, cmd, opts)
+  set("t", key, "<C-\\><C-n>:Floaterm" .. floaterm .. "<CR>", opts)
+end
+map_buf_nav("<A-l>", "Next", "Next")
+map_buf_nav("<A-h>", "Previous", "Prev")
 set("n", "<Leader>q", "<CMD>BufferClose<CR>", opts)
 set("n", "<Leader>qo", "<CMD>BufferCloseAllButCurrent<CR>", opts)
 set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
@@ -25,7 +33,6 @@ local function map_window(key, fn_name)
 end
 
 map_window("<A-1>", "toggle_tree")
-map_window("<A-t>", "toggle_terminal")
 map_window("<A-k>", "toggle_git")
 
 set("t", "<Esc>", "<C-\\><C-N>", opts)
