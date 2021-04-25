@@ -28,6 +28,12 @@ set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
 set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", opts)
 set("n", "<Leader>w", "<CMD>write<CR>", opts)
 
+vim.g.is_fullscreen = 0
+set("n", "<Leader>mf", 
+  [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]],
+  opts)
+set("n", "<Leader>mz", "<CMD>Goyo<CR>", opts)
+
 local function map_window(key, fn_name) 
   set("n", key, "<CMD>lua require('window')." .. fn_name .. "()<CR>", opts)
 end
