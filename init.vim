@@ -29,6 +29,7 @@ Plug 'rktjmp/lush.nvim'
 Plug 'npxbr/gruvbox.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'voldikss/vim-floaterm'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
@@ -47,3 +48,18 @@ lua require("plugins.galaxyline")
 lua require("plugins.floaterm")
 lua require("mapping")
 lua require("window")
+
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  lua vim.defer_fn(require("galaxyline").disable_galaxyline, 10)
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  lua require("galaxyline").galaxyline_augroup()
+endfunction
+
+autocmd! User GoyoEnter call s:goyo_enter()
+autocmd! User GoyoLeave call s:goyo_leave()

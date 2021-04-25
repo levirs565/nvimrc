@@ -18,3 +18,5 @@ if not vim.o.shell == 'cmd.exe' then
   vim.o.sxq = ""
   vim.o.ssl = true
 end
+
+vim.g.goyo_width = 100
