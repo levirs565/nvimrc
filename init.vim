@@ -30,6 +30,7 @@ Plug 'npxbr/gruvbox.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim'
+Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))

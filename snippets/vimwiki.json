@@ -1,0 +1,17 @@
+{
+	"fraction": {
+		"prefix": "fr",
+		"body": "\\frac{$1}{$2}$0",
+		"description": "fraction"
+	},
+	"align": {
+		"prefix": "aligned",
+		"body": "\\begin{aligned}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{aligned}",
+		"description": "aligned environment"
+	},
+	"vector": {
+		"prefix": "vec",
+		"body": "\\vec{$1}$0",
+		"description": "vector"
+	}
+}

@@ -1,5 +1,7 @@
 local kmap = vim.api.nvim_set_keymap
 
+vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. "/snippets"
+
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -22,7 +24,9 @@ require'compe'.setup {
     spell = true;
     tags = true;
     nvim_lsp = true;
+    vsnip = true;
   };
 }
 
 kmap('i', '<C-Space>', 'compe#complete()', { expr = true })
+kmap('i', '<CR>',      "compe#confirm('<CR>')", { expr = true})
