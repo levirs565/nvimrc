@@ -27,7 +27,7 @@ set("n", "<Leader>qo", "<CMD>BufferCloseAllButCurrent<CR>", opts)
 set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
 set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", opts)
 set("n", "<Leader>w", "<CMD>write<CR>", opts)
-set("n", "<Leader>lt", "<CMD>TodoQuickFix<CR>", opts)
+set("n", "<Leader>lt", "<CMD>TodoTrouble<CR>", opts)
 
 vim.g.is_fullscreen = 0
 set("n", "<Leader>mf", 

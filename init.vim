@@ -31,6 +31,7 @@ Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
 call plug#end()
 
@@ -48,6 +49,7 @@ lua require("plugins.lspsaga")
 lua require("plugins.dashboard")
 lua require("plugins.galaxyline")
 lua require("plugins.floaterm")
+lua require("plugins.trouble")
 lua require("plugins.todo")
 lua require("mapping")
 lua require("window")
