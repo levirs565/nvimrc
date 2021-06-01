@@ -28,6 +28,7 @@ set("n", "<Leader>qq", "<CMD>bufdo BufferClose<CR>", opts)
 set("n", "<Leader>qa", "<CMD>bufdo! BufferClose!<CR>", opts)
 set("n", "<Leader>w", "<CMD>write<CR>", opts)
 set("n", "<Leader>lt", "<CMD>TodoTrouble<CR>", opts)
+set("n", "<Leader>f", "<CMD>FormatWrite<CR>", opts)
 
 vim.g.is_fullscreen = 0
 set("n", "<Leader>mf", 
@@ -78,7 +79,6 @@ map_lsp_saga("<C-k>", "signaturehelp", "signature_help")
 map_lsp_saga("<leader>rn", "rename" , "rename")
 map_lsp_saga("<leader>ca", "codeaction", "code_action") 
 set("v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
-map_lsp_buf("<leader>f", "formatting")
 map_lsp_diag("<leader>d", "show_line_diagnostics")
 map_lsp("<leader>ld", "diagnostic.set_loclist")
 map_lsp_diag("[d", "lsp_jump_diagnostic_prev")
