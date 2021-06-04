@@ -1,3 +1,3 @@
 require('nvim_comment').setup({
-  line_mapping = "<C-/>"  
+  line_mapping = "gcc"  
 })
