@@ -34,6 +34,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
 Plug 'mhartington/formatter.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
@@ -53,6 +54,7 @@ lua require("plugins.floaterm")
 lua require("plugins.trouble")
 lua require("plugins.todo")
 lua require("plugins.format")
+lua require("plugins.signature")
 lua require("mapping")
 lua require("window")
 
