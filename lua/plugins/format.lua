@@ -14,6 +14,12 @@ require('formatter').setup {
     },
     vimwiki = {
       prettier
+    },
+    typescript = {
+      prettier
+    },
+    javascript = {
+      prettier
     }
   }
 }
