@@ -55,6 +55,12 @@ end
 
 map_window("<A-1>", "toggle_tree()")
 map_window("<A-k>", "toggle_git()")
+local gitui_cmd = "cmd/c \"set \"TERM=\" && cmd /c gitui\""
+map_cmd(
+  "n", "<A-K>", 
+  "FloatermNew --name=gitui --title=GitUI --disposable --autoclose=1 " .. gitui_cmd,
+  opts
+)
 
 set("t", "<Esc>", "<C-\\><C-N>", opts)
 
