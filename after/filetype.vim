@@ -7,6 +7,7 @@ autocmd FileType NvimTree setlocal cursorline
 " Make below buffers not listed in barbar and also not deleted when use bbye
 augroup HiddenBuffer
   autocmd!
-  autocmd FileType neoterm setlocal nobuflisted
-  autocmd FileType fugitive setlocal nobuflisted
+  autocmd FileType neoterm,NeogitStatus setlocal nobuflisted
 augroup END
+
+autocmd filetype NeogitStatus lua require("window").configure_fugitive_window()

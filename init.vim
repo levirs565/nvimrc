@@ -35,6 +35,7 @@ Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'TimUntersberger/neogit'
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
@@ -55,6 +56,7 @@ lua require("plugins.trouble")
 lua require("plugins.todo")
 lua require("plugins.format")
 lua require("plugins.signature")
+lua require("plugins.neogit")
 lua require("mapping")
 lua require("window")
 

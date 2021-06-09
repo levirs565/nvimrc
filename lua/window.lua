@@ -1,12 +1,16 @@
 local tree = require("nvim-tree")
+local neogit = require("neogit")
 local M = {
   sidebar_width = 35
 }
 
 local buffer_data = {
-  fugitive = {
-    open = function() vim.api.nvim_command("Git") end,
-    close = function(win) vim.api.nvim_win_close(win, false) end
+  NeogitStatus = {
+    open = function() neogit.open { kind = "split" } end,
+    close = function(win)
+      vim.api.nvim_set_current_win(win)
+      vim.api.nvim_command("q")
+    end
   },
   NvimTree = {
     open = tree.open,
@@ -54,7 +58,7 @@ function M.toggle_tree()
 end
 
 function M.toggle_git()
-  smart_toggle("fugitive")
+  smart_toggle("NeogitStatus")
 end
 
 function M.configure_fugitive_window()
