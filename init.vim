@@ -9,7 +9,6 @@ lua require("setting")
 let g:srootdir=expand("<sfile>:p:h")
 
 call plug#begin(g:srootdir . '/plugged')
-Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'terrortylor/nvim-comment'
@@ -35,6 +34,7 @@ Plug 'folke/todo-comments.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'TimUntersberger/neogit'
+Plug 'lewis6991/gitsigns.nvim'
 " TODO: Use 'iamcco/markdown-preview.nvim', see https://github.com/iamcco/markdown-preview.nvim/pull/342
 Plug 'GregBowyer/markdown-preview.nvim', { 'branch': 'katex', 'do': 'cd app && pnpm install --shamefully-hoist'  }
 call plug#end()
@@ -58,6 +58,7 @@ lua require("plugins.todo")
 lua require("plugins.format")
 lua require("plugins.signature")
 lua require("plugins.neogit")
+lua require("plugins.gitsigns")
 lua require("plugins.markdown")
 lua require("mapping")
 lua require("window")
