@@ -39,6 +39,8 @@ map_cmd("n", "<Leader>lt", "TodoTrouble", opts)
 map_cmd("n", "<Leader>ld", "TroubleToggle lsp_document_diagnostics", opts)
 map_cmd("n", "<Leader>lD", "TroubleToggle lsp_workspace_diagnostics", opts)
 
+map_cmd("n", "<Leader>mp", "MarkdownPreviewToggle", opts)
+
 vim.g.is_fullscreen = 0
 set("n", "<Leader>mf", 
   [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]],

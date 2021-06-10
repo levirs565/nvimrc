@@ -35,6 +35,8 @@ Plug 'folke/todo-comments.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'TimUntersberger/neogit'
+" TODO: Use 'iamcco/markdown-preview.nvim', see https://github.com/iamcco/markdown-preview.nvim/pull/342
+Plug 'GregBowyer/markdown-preview.nvim', { 'branch': 'katex', 'do': 'cd app && pnpm install --shamefully-hoist'  }
 call plug#end()
 
 if filereadable(fnamemodify("~/.nvim_color", ":p"))
@@ -56,6 +58,7 @@ lua require("plugins.todo")
 lua require("plugins.format")
 lua require("plugins.signature")
 lua require("plugins.neogit")
+lua require("plugins.markdown")
 lua require("mapping")
 lua require("window")
 
