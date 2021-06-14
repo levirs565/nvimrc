@@ -109,7 +109,7 @@ local function condition_is_not_special_ft()
 end
   
 
-line.short_line_list = {"dashboard", "NvimTree", "fugitive", "gitcommit"}
+line.short_line_list = {"dashboard", "NvimTree", "NeogitStatus", "gitcommit"}
 line.section.short_line_left = {
   {
     BufferIcon = {
