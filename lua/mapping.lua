@@ -27,7 +27,7 @@ local function map_cmd(mode, key, cmd, opts)
   set(mode, key, "<CMD>" .. cmd .. "<CR>", opts)
 end
 
-map_cmd("n", "<Leader>q", "BufferClose", opts)
+map_cmd("n", "<Leader>qc", "BufferClose", opts)
 map_cmd("n", "<Leader>qo", "BufferCloseAllButCurrent", opts)
 map_cmd("n", "<Leader>qq", "bufdo BufferClose", opts)
 map_cmd("n", "<Leader>qa", "bufdo! BufferClose!", opts)
