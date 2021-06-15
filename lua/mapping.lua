@@ -40,6 +40,7 @@ map_cmd("n", "<Leader>ld", "TroubleToggle lsp_document_diagnostics", opts)
 map_cmd("n", "<Leader>lD", "TroubleToggle lsp_workspace_diagnostics", opts)
 
 map_cmd("n", "<Leader>mp", "MarkdownPreviewToggle", opts)
+map_cmd("n", "<Leader>ni", "edit ~/VimWiki/index.md", opts)
 
 vim.g.is_fullscreen = 0
 set("n", "<Leader>mf", 
