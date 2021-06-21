@@ -5,5 +5,3 @@ telescope.setup {
     borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
   }
 }
-
-telescope.load_extension("project")

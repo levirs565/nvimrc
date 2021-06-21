@@ -73,7 +73,7 @@ end
 
 map_telescope("<A-n>", "find_files()")
 map_telescope("<A-f>", "live_grep()")
-map_module("n", "<A-p>", 'telescope', "extensions.project.project()", opts)
+map_module("n", "<A-p>", 'telescope', "extensions.project.project{}", opts)
 
 
 local function map_lsp(key, fn_name)
