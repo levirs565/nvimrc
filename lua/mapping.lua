@@ -1,17 +1,66 @@
 local set = vim.api.nvim_set_keymap
 local opts = {
-  noremap = true,
+  -- noremap = true,
   silent = true
 }
 
-local function disable_key(key)
-  set("n", key, "<Nop>", opts)
+local function cmd(str)
+  return "<CMD>" .. str .. "<CR>"
 end
 
-disable_key("<Up>")
-disable_key("<Left>")
-disable_key("<Right>")
-disable_key("<Down>")
+local function lua(str)
+  return cmd("lua " .. str)
+end
+
+local mapping = {
+  -- Disabled keys
+  { "n", "<Up>", "<Nop>"},
+  { "n", "<Left>", "<Nop>"},
+  { "n", "<Right>", "<Nop>"},
+  { "n", "<Down>", "<Nop>"},
+
+  -- Buffer close
+  { "n", "<Leader>xx", cmd("BufferClose") },
+  { "n", "<Leader>xo", cmd("BufferCloseAllButCurrent") },
+  { "n", "<Leader>xa", cmd("bufdo BufferClose") },
+  { "n", "<Leader>xA", cmd("bufdo! BufferClose!") },
+
+  -- Buffer write
+  { "n", "<Leader>w", cmd("write") },
+  { "n", "<Leader>f", cmd("FormatWrite") },
+
+  -- Window
+  { "n", "<A-1>", lua([[require('window').toggle_tree()]])},
+  { "n", "<A-k>", lua([[require('window').toggle_git()]])},
+
+  -- List
+  { "n", "<Leader>lt", cmd("TodoTrouble") },
+  { "n", "<Leader>ld", cmd("TroubleToggle lsp_document_diagnostics") },
+  { "n", "<Leader>lD", cmd("TroubleToggle lsp_workspace_diagnostics") },
+
+  -- Fuzzy finder
+  { "n", "<A-n>", cmd("Telescope find_files") },
+  { "n", "<A-f>", cmd("Telescope live_grep") },
+  { "n", "<A-p>", cmd("Telescope project") },
+
+  -- Terminal
+  { "t", "<Esc>", "<C-\\><C-N>" },
+
+  { "n", "<Leader>mp", cmd("MarkdownPreviewToggle") },
+  { "n", "<Leader>mz", cmd("Goyo") },
+  { "n", "<Leader>ni", cmd("cd ~/VimWiki | e index.md") },
+
+  -- LSP Buf
+  { "n", "gd", lua("vim.lsp.buf.definition()") },
+  { "n", "gD", lua("vim.lsp.buf.type_definition()") },
+  { "n", "gi", lua("vim.lsp.buf.implementation()") },
+  { "n", "gr", cmd("TroubleToggle lsp_references") }
+}
+
+for _, info in ipairs(mapping) do
+  set(info[1], info[2], info[3], opts)
+end
+
 
 local function map_buf_nav(key, buffer, floaterm)
   local cmd = string.format(
@@ -27,37 +76,15 @@ local function map_cmd(mode, key, cmd, opts)
   set(mode, key, "<CMD>" .. cmd .. "<CR>", opts)
 end
 
-map_cmd("n", "<Leader>qc", "BufferClose", opts)
-map_cmd("n", "<Leader>qo", "BufferCloseAllButCurrent", opts)
-map_cmd("n", "<Leader>qq", "bufdo BufferClose", opts)
-map_cmd("n", "<Leader>qa", "bufdo! BufferClose!", opts)
-
-map_cmd("n", "<Leader>w", "write", opts)
-map_cmd("n", "<Leader>f", "FormatWrite", opts)
-
-map_cmd("n", "<Leader>lt", "TodoTrouble", opts)
-map_cmd("n", "<Leader>ld", "TroubleToggle lsp_document_diagnostics", opts)
-map_cmd("n", "<Leader>lD", "TroubleToggle lsp_workspace_diagnostics", opts)
-
-map_cmd("n", "<Leader>mp", "MarkdownPreviewToggle", opts)
-map_cmd("n", "<Leader>ni", "cd ~/VimWiki | e index.md", opts)
-
 vim.g.is_fullscreen = 0
 set("n", "<Leader>mf", 
   [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]],
   opts)
-set("n", "<Leader>mz", "<CMD>Goyo<CR>", opts)
 
 local function map_module(mode, key, module, call, opts)
   map_cmd(mode, key, "lua require('" .. module .. "')." .. call, opts)
 end
 
-local function map_window(key, fn_name) 
-  map_module("n", key, 'window', fn_name, opts)
-end
-
-map_window("<A-1>", "toggle_tree()")
-map_window("<A-k>", "toggle_git()")
 local gitui_cmd = "cmd/c \"set \"TERM=\" && cmd /c gitui\""
 map_cmd(
   "n", "<A-K>", 
@@ -65,16 +92,9 @@ map_cmd(
   opts
 )
 
-set("t", "<Esc>", "<C-\\><C-N>", opts)
-
 local function map_telescope(key, fn_name)
   map_module("n", key, 'telescope.builtin', fn_name, opts)
 end
-
-map_telescope("<A-n>", "find_files()")
-map_telescope("<A-f>", "live_grep()")
-map_module("n", "<A-p>", 'telescope', "extensions.project.project{}", opts)
-
 
 local function map_lsp(key, fn_name)
   map_cmd("n", key, "lua vim.lsp." .. fn_name, opts)
@@ -92,10 +112,6 @@ local function map_lsp_diag(key, fn_name)
   map_lsp_saga(key, "diagnostic", fn_name)
 end
 
-map_lsp_buf("gd", "definition()")
-map_lsp_buf("gD", "type_definition()")
-map_lsp_buf("gi", "implementation()")
-map_cmd("n", "gr", "TroubleToggle lsp_references", opts)
 map_lsp_saga("K", "hover", "render_hover_doc()")
 map_lsp_saga("<C-k>", "signaturehelp", "signature_help()")
 map_lsp_saga("<leader>rn", "rename" , "rename()")
