@@ -4,6 +4,8 @@ local opts = {
   silent = true
 }
 
+local M = {}
+
 local function cmd(str)
   return "<CMD>" .. str .. "<CR>"
 end
@@ -28,6 +30,10 @@ local mapping = {
   -- Buffer write
   { "n", "<Leader>w", cmd("write") },
   { "n", "<Leader>f", cmd("FormatWrite") },
+
+  -- Buffer navigation
+  { "n", "<A-h>", cmd("BufferPrevious") },
+  { "n", "<A-l>", cmd("BufferNext")},
 
   -- Window
   { "n", "<A-1>", lua([[require('window').toggle_tree()]])},
@@ -57,20 +63,24 @@ local mapping = {
   { "n", "gr", cmd("TroubleToggle lsp_references") }
 }
 
+local floaterm_mapping = {
+  { "n", "<A-h>", cmd("FloatermPrev") },
+  { "t", "<A-h>", "<C-\\><C-n>:FloatermPrev<CR>" },
+  { "n", "<A-l>", cmd("FloatermNext") },
+  { "t", "<A-l>", "<C-\\><C-n>:FloatermNext<CR>" },
+}
+
 for _, info in ipairs(mapping) do
   set(info[1], info[2], info[3], opts)
 end
 
-
-local function map_buf_nav(key, buffer, floaterm)
-  local cmd = string.format(
-    [[<CMD>if &filetype == "floaterm" | exe "Floaterm%s" | else | exe "Buffer%s" | endif<CR>]],
-    floaterm, buffer)
-  set("n", key, cmd, opts)
-  set("t", key, "<C-\\><C-n>:Floaterm" .. floaterm .. "<CR>", opts)
+M.apply_floaterm = function ()
+  local buf = vim.api.nvim_get_current_buf()
+  for _, info in ipairs(floaterm_mapping) do
+    vim.api.nvim_buf_set_keymap(buf, info[1], info[2], info[3], opts)
+  end
 end
-map_buf_nav("<A-l>", "Next", "Next")
-map_buf_nav("<A-h>", "Previous", "Prev")
+
 
 local function map_cmd(mode, key, cmd, opts)
   set(mode, key, "<CMD>" .. cmd .. "<CR>", opts)
@@ -120,3 +130,5 @@ set("v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_actio
 map_lsp_diag("<leader>d", "show_line_diagnostics()")
 map_lsp_diag("[d", "lsp_jump_diagnostic_prev()")
 map_lsp_diag("]d", "lsp_jump_diagnostic_next()")
+
+return M
