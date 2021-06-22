@@ -5,6 +5,9 @@ local opts = {
 }
 
 local M = {}
+local gitui_cmd = "cmd/c \"set \"TERM=\" && cmd /c gitui\""
+
+vim.g.is_fullscreen = 0
 
 local function cmd(str)
   return "<CMD>" .. str .. "<CR>"
@@ -51,16 +54,34 @@ local mapping = {
 
   -- Terminal
   { "t", "<Esc>", "<C-\\><C-N>" },
+  { 
+    "n", 
+    "<A-K>", 
+    cmd("FloatermNew --name=gitui --title=GitUI --disposable --autoclose=1 " .. gitui_cmd)
+  },
 
   { "n", "<Leader>mp", cmd("MarkdownPreviewToggle") },
   { "n", "<Leader>mz", cmd("Goyo") },
+  { "n", 
+    "<Leader>mf", 
+    [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]]
+  },
   { "n", "<Leader>ni", cmd("cd ~/VimWiki | e index.md") },
 
   -- LSP Buf
   { "n", "gd", lua("vim.lsp.buf.definition()") },
   { "n", "gD", lua("vim.lsp.buf.type_definition()") },
   { "n", "gi", lua("vim.lsp.buf.implementation()") },
-  { "n", "gr", cmd("TroubleToggle lsp_references") }
+  { "n", "gr", cmd("TroubleToggle lsp_references") },
+
+  { "n", "K", lua([[require("lspsaga.hover").render_hover_doc()]]) },
+  { "n", "<C-k>", lua([[require("lspsaga.signaturehelp").signature_help()]]) },
+  { "n", "<leader>rn", lua([[require("lspsaga.rename").rename()]]) },
+  { "n", "<leader>ca", lua([[require("lspsaga.codeaction").code_action()]]) },
+  { "v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>"},
+  { "n", "<leader>d", lua([[require("lspsaga.diagnostic").show_line_diagnostics()]]) },
+  { "n", "[d", lua([[require("lspsaga.diagnostic").lsp_jump_diagnostic_prev()]]) },
+  { "n", "]d", lua([[require("lspsaga.diagnostic").lsp_jump_diagnostic_next()]]) },
 }
 
 local floaterm_mapping = {
@@ -80,55 +101,5 @@ M.apply_floaterm = function ()
     vim.api.nvim_buf_set_keymap(buf, info[1], info[2], info[3], opts)
   end
 end
-
-
-local function map_cmd(mode, key, cmd, opts)
-  set(mode, key, "<CMD>" .. cmd .. "<CR>", opts)
-end
-
-vim.g.is_fullscreen = 0
-set("n", "<Leader>mf", 
-  [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]],
-  opts)
-
-local function map_module(mode, key, module, call, opts)
-  map_cmd(mode, key, "lua require('" .. module .. "')." .. call, opts)
-end
-
-local gitui_cmd = "cmd/c \"set \"TERM=\" && cmd /c gitui\""
-map_cmd(
-  "n", "<A-K>", 
-  "FloatermNew --name=gitui --title=GitUI --disposable --autoclose=1 " .. gitui_cmd,
-  opts
-)
-
-local function map_telescope(key, fn_name)
-  map_module("n", key, 'telescope.builtin', fn_name, opts)
-end
-
-local function map_lsp(key, fn_name)
-  map_cmd("n", key, "lua vim.lsp." .. fn_name, opts)
-end
-
-local function map_lsp_saga(key, module, fn_name)
-  map_module("n", key, "lspsaga." .. module, fn_name, opts)
-end
-
-local function map_lsp_buf(key, fn_name)
-  map_lsp(key, "buf." .. fn_name)
-end
-
-local function map_lsp_diag(key, fn_name)
-  map_lsp_saga(key, "diagnostic", fn_name)
-end
-
-map_lsp_saga("K", "hover", "render_hover_doc()")
-map_lsp_saga("<C-k>", "signaturehelp", "signature_help()")
-map_lsp_saga("<leader>rn", "rename" , "rename()")
-map_lsp_saga("<leader>ca", "codeaction", "code_action()") 
-set("v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
-map_lsp_diag("<leader>d", "show_line_diagnostics()")
-map_lsp_diag("[d", "lsp_jump_diagnostic_prev()")
-map_lsp_diag("]d", "lsp_jump_diagnostic_next()")
 
 return M
