@@ -1,8 +1,10 @@
 local lspconfig = require("lspconfig")
 local lsp_signature = require("lsp_signature")
+local mapping = require("mapping")
 
-local function on_attach()
+local function on_attach(client, bufnr)
   lsp_signature.on_attach()
+  mapping.apply_lsp(bufnr)
 end
 
 lspconfig.hls.setup {

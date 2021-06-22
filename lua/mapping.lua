@@ -67,8 +67,16 @@ local mapping = {
     [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]]
   },
   { "n", "<Leader>ni", cmd("cd ~/VimWiki | e index.md") },
+}
 
-  -- LSP Buf
+local floaterm_mapping = {
+  { "n", "<A-h>", cmd("FloatermPrev") },
+  { "t", "<A-h>", "<C-\\><C-n>:FloatermPrev<CR>" },
+  { "n", "<A-l>", cmd("FloatermNext") },
+  { "t", "<A-l>", "<C-\\><C-n>:FloatermNext<CR>" },
+}
+
+local lsp_mapping = {
   { "n", "gd", lua("vim.lsp.buf.definition()") },
   { "n", "gD", lua("vim.lsp.buf.type_definition()") },
   { "n", "gi", lua("vim.lsp.buf.implementation()") },
@@ -84,22 +92,23 @@ local mapping = {
   { "n", "]d", lua([[require("lspsaga.diagnostic").lsp_jump_diagnostic_next()]]) },
 }
 
-local floaterm_mapping = {
-  { "n", "<A-h>", cmd("FloatermPrev") },
-  { "t", "<A-h>", "<C-\\><C-n>:FloatermPrev<CR>" },
-  { "n", "<A-l>", cmd("FloatermNext") },
-  { "t", "<A-l>", "<C-\\><C-n>:FloatermNext<CR>" },
-}
-
 for _, info in ipairs(mapping) do
   set(info[1], info[2], info[3], opts)
 end
 
+local function apply_to_buffer(mapping, bufnr)
+  for _, info in ipairs(mapping) do
+    vim.api.nvim_buf_set_keymap(bufnr, info[1], info[2], info[3], opts)
+  end
+end
+
 M.apply_floaterm = function ()
   local buf = vim.api.nvim_get_current_buf()
-  for _, info in ipairs(floaterm_mapping) do
-    vim.api.nvim_buf_set_keymap(buf, info[1], info[2], info[3], opts)
-  end
+  apply_to_buffer(floaterm_mapping, buf)
+end
+
+M.apply_lsp = function (bufnr)
+  apply_to_buffer(lsp_mapping, bufnr)
 end
 
 return M
