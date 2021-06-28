@@ -39,8 +39,8 @@ local mapping = {
   { "n", "<A-l>", cmd("BufferNext")},
 
   -- Window
-  { "n", "<A-1>", lua([[require('window').toggle_tree()]])},
-  { "n", "<A-k>", lua([[require('window').toggle_git()]])},
+  { "n", "<A-g>", lua([[require('window').toggle_git()]])},
+  { "n", "<A-e>", lua([[require('window').toggle_tree()]])},
 
   -- List
   { "n", "<Leader>lt", cmd("TodoTrouble") },
