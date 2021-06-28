@@ -75,7 +75,7 @@ configs["kasten_note"] = {
 
 configs["kasten_note"].setup {
   on_attach = function (client, bufnr) 
-    vim.api.nvim_command("setlocal spell spelllang=id syntax=markdown.pandoc")
+    vim.api.nvim_command("setlocal spell spelllang=id syntax=markdown.pandoc conceallevel=0")
     mapping.apply_lsp(bufnr)
   end
 }
