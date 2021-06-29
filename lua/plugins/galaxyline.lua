@@ -34,8 +34,10 @@ local function update_color()
     mode_color[""] = gruvbox["GruvboxOrange"].fg
     mode_color.c = gruvbox["GruvboxGray"].fg
     color.mode_fg = gruvbox["GruvboxBg0"].fg
-    color.bg_1 = gruvbox["GruvboxBg1"].fg
-    color.fg_1 = gruvbox["GruvboxFg1"].fg
+    color.bg_1 = gruvbox["GruvboxBg2"].fg
+    color.fg_1 = gruvbox["GruvboxFg2"].fg
+    color.bg_2 = gruvbox["GruvboxBg1"].fg
+    color.fg_2 = gruvbox["GruvboxFg1"].fg
   end
   if vim.g.colors_name == "tokyonight" then
     local config = require("tokyonight.config")
@@ -49,8 +51,10 @@ local function update_color()
     mode_color[""] = util.getColor(colors.magenta)
     mode_color.c = util.getColor(colors.yellow)
     color.mode_fg = util.getColor(colors.black)
-    color.bg_1 = util.getColor(colors.fg_gutter)
+    color.bg_1 = util.getColor(colors.fg_sidebar)
     color.fg_1 = util.getColor(colors.black)
+    color.bg_2 = util.getColor(colors.bg_statusline)
+    color.fg_2 = util.getColor(colors.fg_gutter)
   end
 end
 
@@ -97,7 +101,8 @@ line.section.left = {
     Blank = {
       provider = function ()
         return " "
-      end
+      end,
+      highlight = {call_get_color("fg_2"), call_get_color("bg_2")},
     }
   }
 }
@@ -113,8 +118,10 @@ line.section.right = {
   },
   {
     LinePercent = {
-      provider = fileinfo.current_line_percent,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
+      provider = function ()
+        return "  " .. fileinfo.current_line_percent() .. " "
+      end,
+      highlight = "GalaxyMode"
     }
   }
 }
