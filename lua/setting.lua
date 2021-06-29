@@ -20,3 +20,5 @@ if not vim.o.shell == 'cmd.exe' then
 end
 
 vim.g.goyo_width = 100
+
+vim.g.tokyonight_sidebars	= {"Neogit*"}

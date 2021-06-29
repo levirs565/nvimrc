@@ -37,12 +37,8 @@ Plug 'TimUntersberger/neogit'
 Plug 'lewis6991/gitsigns.nvim'
 " TODO: Use 'iamcco/markdown-preview.nvim', see https://github.com/iamcco/markdown-preview.nvim/pull/342
 Plug 'GregBowyer/markdown-preview.nvim', { 'branch': 'katex', 'do': 'cd app && pnpm install --shamefully-hoist'  }
+Plug 'folke/tokyonight.nvim'
 call plug#end()
-
-if filereadable(fnamemodify("~/.nvim_color", ":p"))
-  source ~/.nvim_color
-endif
-colorscheme gruvbox
 
 lua require("plugins.comment")
 lua require("plugins.tree")
@@ -77,3 +73,10 @@ endfunction
 
 autocmd! User GoyoEnter call s:goyo_enter()
 autocmd! User GoyoLeave call s:goyo_leave()
+
+autocmd! ColorScheme * lua require("plugins.galaxyline").update_color() 
+
+if filereadable(fnamemodify("~/.nvim_color", ":p"))
+  source ~/.nvim_color
+endif
+colorscheme tokyonight
