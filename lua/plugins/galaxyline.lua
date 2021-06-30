@@ -87,7 +87,7 @@ line.section.left = {
       provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = { fileinfo.get_file_icon_color, call_get_color("bg_1") },
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1")},
       condition = condition.buffer_not_empty,
     },
   },
