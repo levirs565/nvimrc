@@ -6,6 +6,14 @@ local function prettier()
   }
 end
 
+local function stylua()
+  return {
+    exe = "stylua",
+    args = { "-s", "--stdin-filepath", '"' .. vim.api.nvim_buf_get_name(0) .. '"', "-" },
+    stdin = true,
+  }
+end
+
 require("formatter").setup({
   logging = true,
   filetype = {
@@ -20,6 +28,9 @@ require("formatter").setup({
     },
     javascript = {
       prettier,
+    },
+    lua = {
+      stylua,
     },
   },
 })
