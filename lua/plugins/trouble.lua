@@ -1,4 +1,3 @@
-require("trouble").setup {
-}
+require("trouble").setup({})
 
 -- TODO: Configure trouble

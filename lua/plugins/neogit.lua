@@ -1,6 +1,6 @@
-local neogit = require('neogit')
+local neogit = require("neogit")
 
-neogit.setup {
+neogit.setup({
   disable_signs = false,
   disable_context_highlighting = true,
   disable_commit_confirmation = false,
@@ -16,15 +16,15 @@ neogit.setup {
     -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
     --
     -- Requires you to have `sindrets/diffview.nvim` installed.
-    -- use { 
-    --   'TimUntersberger/neogit', 
-    --   requires = { 
+    -- use {
+    --   'TimUntersberger/neogit',
+    --   requires = {
     --     'nvim-lua/plenary.nvim',
-    --     'sindrets/diffview.nvim' 
+    --     'sindrets/diffview.nvim'
     --   }
     -- }
     --
-    diffview = false  
+    diffview = false,
   },
   -- override/add mappings
   mappings = {
@@ -35,7 +35,7 @@ neogit.setup {
       -- Removes the default mapping of "s"
       -- ["s"] = "",
       ["o"] = "Toggle",
-      ["R"] = "RefreshBuffer"
-    }
-  }
-}
+      ["R"] = "RefreshBuffer",
+    },
+  },
+})

@@ -1,27 +1,31 @@
 local tree = require("nvim-tree")
 local neogit = require("neogit")
 local M = {
-  sidebar_width = 35
+  sidebar_width = 35,
 }
 
 local buffer_data = {
   NeogitStatus = {
-    open = function() neogit.open { kind = "split" } end,
+    open = function()
+      neogit.open({ kind = "split" })
+    end,
     close = function(win)
       vim.api.nvim_set_current_win(win)
       vim.api.nvim_command("q")
-    end
+    end,
   },
   NvimTree = {
     open = tree.open,
-    close = function(win) tree.close() end
-  }
+    close = function(win)
+      tree.close()
+    end,
+  },
 }
 
-local function find_window(filetype) 
+local function find_window(filetype)
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
-    
+
     if vim.bo[buf].filetype == filetype then
       return win
     end
@@ -49,7 +53,7 @@ local function smart_toggle(filetype)
       end
     end
   end
-  
+
   buffer_data[filetype].open()
 end
 
@@ -63,7 +67,7 @@ end
 
 function M.configure_fugitive_window()
   if not vim.b.win_configured then
-    vim.api.nvim_command("wincmd H | vertical resize " .. M.sidebar_width )
+    vim.api.nvim_command("wincmd H | vertical resize " .. M.sidebar_width)
     vim.b.win_configured = true
   end
 end

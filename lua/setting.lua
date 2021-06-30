@@ -13,7 +13,7 @@ vim.o.completeopt = "menu,menuone,preview,noinsert,noselect"
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 
-if not vim.o.shell == 'cmd.exe' then
+if not vim.o.shell == "cmd.exe" then
   vim.o.shcf = "-c"
   vim.o.sxq = ""
   vim.o.ssl = true
@@ -21,4 +21,4 @@ end
 
 vim.g.goyo_width = 100
 
-vim.g.tokyonight_sidebars	= {"Neogit*"}
+vim.g.tokyonight_sidebars = { "Neogit*" }

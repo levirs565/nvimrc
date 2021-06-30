@@ -1,10 +1,9 @@
 local telescope = require("telescope")
 
-telescope.setup {
+telescope.setup({
   defaults = {
-    borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
-  }
-}
+    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  },
+})
 
-
-require'telescope'.load_extension('project')
+require("telescope").load_extension("project")

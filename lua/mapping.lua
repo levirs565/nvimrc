@@ -1,11 +1,11 @@
 local set = vim.api.nvim_set_keymap
 local opts = {
   -- noremap = true,
-  silent = true
+  silent = true,
 }
 
 local M = {}
-local gitui_cmd = "cmd/c \"set \"TERM=\" && cmd /c gitui\""
+local gitui_cmd = 'cmd/c "set "TERM=" && cmd /c gitui"'
 
 vim.g.is_fullscreen = 0
 
@@ -19,10 +19,10 @@ end
 
 local mapping = {
   -- Disabled keys
-  { "n", "<Up>", "<Nop>"},
-  { "n", "<Left>", "<Nop>"},
-  { "n", "<Right>", "<Nop>"},
-  { "n", "<Down>", "<Nop>"},
+  { "n", "<Up>", "<Nop>" },
+  { "n", "<Left>", "<Nop>" },
+  { "n", "<Right>", "<Nop>" },
+  { "n", "<Down>", "<Nop>" },
 
   -- Buffer close
   { "n", "<Leader>xx", cmd("BufferClose") },
@@ -36,11 +36,11 @@ local mapping = {
 
   -- Buffer navigation
   { "n", "<A-h>", cmd("BufferPrevious") },
-  { "n", "<A-l>", cmd("BufferNext")},
+  { "n", "<A-l>", cmd("BufferNext") },
 
   -- Window
-  { "n", "<A-g>", lua([[require('window').toggle_git()]])},
-  { "n", "<A-e>", lua([[require('window').toggle_tree()]])},
+  { "n", "<A-g>", lua([[require('window').toggle_git()]]) },
+  { "n", "<A-e>", lua([[require('window').toggle_tree()]]) },
 
   -- List
   { "n", "<Leader>lt", cmd("TodoTrouble") },
@@ -54,17 +54,18 @@ local mapping = {
 
   -- Terminal
   { "t", "<Esc>", "<C-\\><C-N>" },
-  { 
-    "n", 
-    "<A-K>", 
-    cmd("FloatermNew --name=gitui --title=GitUI --disposable --autoclose=1 " .. gitui_cmd)
+  {
+    "n",
+    "<A-K>",
+    cmd("FloatermNew --name=gitui --title=GitUI --disposable --autoclose=1 " .. gitui_cmd),
   },
 
   { "n", "<Leader>mp", cmd("MarkdownPreviewToggle") },
   { "n", "<Leader>mz", cmd("Goyo") },
-  { "n", 
-    "<Leader>mf", 
-    [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]]
+  {
+    "n",
+    "<Leader>mf",
+    [[<CMD>let g:is_fullscreen = !g:is_fullscreen | call GuiWindowFullScreen(g:is_fullscreen)<CR>]],
   },
   { "n", "<Leader>ni", cmd("cd ~/VimWiki | e index.md") },
 }
@@ -86,7 +87,7 @@ local lsp_mapping = {
   { "n", "<C-k>", lua([[require("lspsaga.signaturehelp").signature_help()]]) },
   { "n", "<leader>rn", lua([[require("lspsaga.rename").rename()]]) },
   { "n", "<leader>ca", lua([[require("lspsaga.codeaction").code_action()]]) },
-  { "v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>"},
+  { "v", "<leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>" },
   { "n", "<leader>d", lua([[require("lspsaga.diagnostic").show_line_diagnostics()]]) },
   { "n", "[d", lua([[require("lspsaga.diagnostic").lsp_jump_diagnostic_prev()]]) },
   { "n", "]d", lua([[require("lspsaga.diagnostic").lsp_jump_diagnostic_next()]]) },
@@ -102,12 +103,12 @@ local function apply_to_buffer(mapping, bufnr)
   end
 end
 
-M.apply_floaterm = function ()
+M.apply_floaterm = function()
   local buf = vim.api.nvim_get_current_buf()
   apply_to_buffer(floaterm_mapping, buf)
 end
 
-M.apply_lsp = function (bufnr)
+M.apply_lsp = function(bufnr)
   apply_to_buffer(lsp_mapping, bufnr)
 end
 

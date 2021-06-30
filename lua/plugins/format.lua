@@ -1,25 +1,25 @@
 local function prettier()
   return {
     exe = "prettier",
-    args = {"--stdin-filepath", '"' .. vim.api.nvim_buf_get_name(0) .. '"', '--single-quote'},
-    stdin = true
+    args = { "--stdin-filepath", '"' .. vim.api.nvim_buf_get_name(0) .. '"', "--single-quote" },
+    stdin = true,
   }
 end
 
-require('formatter').setup {
+require("formatter").setup({
   logging = true,
   filetype = {
     markdown = {
-      prettier
+      prettier,
     },
     vimwiki = {
-      prettier
+      prettier,
     },
     typescript = {
-      prettier
+      prettier,
     },
     javascript = {
-      prettier
-    }
-  }
-}
+      prettier,
+    },
+  },
+})

@@ -13,14 +13,15 @@ local mode_alias = {
   v = "VISUAL",
   V = "VISUAL-LINE",
   [""] = "VISUAL-BLOCK",
-  c = "COMMAND"
+  c = "COMMAND",
 }
-local mode_color = {
-}
+local mode_color = {}
 local color = {}
 
 local function call_get_color(name)
-  return function () return color[name] end
+  return function()
+    return color[name]
+  end
 end
 
 local function update_color()
@@ -61,7 +62,7 @@ end
 line.section.left = {
   {
     Mode = {
-      provider = function () 
+      provider = function()
         local mode = vim.fn.mode()
         local color = mode_color[mode]
         local text = mode_alias[mode]
@@ -71,121 +72,119 @@ line.section.left = {
         if text == nil then
           text = "UNKNOWN:" .. mode
         end
-        vim.api.nvim_command('hi GalaxyMode guibg='.. color)
+        vim.api.nvim_command("hi GalaxyMode guibg=" .. color)
         return "  " .. text .. " "
       end,
       highlight = {
-        call_get_color("mode_fg"),-- Unused
+        call_get_color("mode_fg"), -- Unused
         "#FFFFFF",
-        "bold"
-      }
-    }
+        "bold",
+      },
+    },
   },
   {
     FileIcon = {
-      provider = function ()
+      provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = {fileinfo.get_file_icon_color, call_get_color("bg_1")},
-      condition = condition.buffer_not_empty
-    }
+      highlight = { fileinfo.get_file_icon_color, call_get_color("bg_1") },
+      condition = condition.buffer_not_empty,
+    },
   },
   {
     FileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition.buffer_not_empty,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+    },
   },
   {
     Blank = {
-      provider = function ()
+      provider = function()
         return " "
       end,
-      highlight = {call_get_color("fg_2"), call_get_color("bg_2")},
-    }
-  }
+      highlight = { call_get_color("fg_2"), call_get_color("bg_2") },
+    },
+  },
 }
 
 line.section.right = {
   {
     LineColumn = {
-      provider = function ()
+      provider = function()
         return string.format("   %s ", fileinfo.line_column())
       end,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+    },
   },
   {
     LinePercent = {
-      provider = function ()
+      provider = function()
         return "  " .. fileinfo.current_line_percent() .. " "
       end,
-      highlight = "GalaxyMode"
-    }
-  }
+      highlight = "GalaxyMode",
+    },
+  },
 }
 
 local function condition_is_special_ft()
   return vim.fn.index(line.short_line_list, vim.bo.filetype) ~= -1
 end
 
-
 local function condition_is_not_special_ft()
   return not condition_is_special_ft()
 end
-  
 
-line.short_line_list = {"dashboard", "NvimTree", "NeogitStatus", "gitcommit"}
+line.short_line_list = { "dashboard", "NvimTree", "NeogitStatus", "gitcommit" }
 line.section.short_line_left = {
   {
     BufferIcon = {
-      provider = function ()
+      provider = function()
         local icon = buffer.get_buffer_type_icon()
         if icon == nil then
           icon = ""
         end
         return " " .. icon
       end,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-      condition = condition_is_special_ft
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      condition = condition_is_special_ft,
+    },
   },
   {
     BufferType = {
-      provider = function ()
+      provider = function()
         return buffer.get_buffer_filetype() .. " "
       end,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-      condition = condition_is_special_ft
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      condition = condition_is_special_ft,
+    },
   },
   {
     InactiveFileIcon = {
-      provider = function ()
+      provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-      condition = condition_is_not_special_ft
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      condition = condition_is_not_special_ft,
+    },
   },
   {
     InactiveFileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition_is_not_special_ft,
-      highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
-    }
+      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+    },
   },
   {
     InactiveBlank = {
-      provider = function ()
+      provider = function()
         return " "
       end,
-      highlight = {call_get_color("fg_2"), call_get_color("bg_2")},
-    }
-  }
+      highlight = { call_get_color("fg_2"), call_get_color("bg_2") },
+    },
+  },
 }
 
 return {
-  update_color = update_color
+  update_color = update_color,
 }
