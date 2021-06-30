@@ -24,6 +24,12 @@ local function call_get_color(name)
   end
 end
 
+local function call_get_mode_color(mode) 
+  return function()
+    return mode_color[mode]
+  end
+end
+
 local function update_color()
   if vim.g.colors_name == "gruvbox" then
     local gruvbox = require("gruvbox")
@@ -35,10 +41,8 @@ local function update_color()
     mode_color[""] = gruvbox["GruvboxOrange"].fg
     mode_color.c = gruvbox["GruvboxGray"].fg
     color.mode_fg = gruvbox["GruvboxBg0"].fg
-    color.bg_1 = gruvbox["GruvboxBg2"].fg
-    color.fg_1 = gruvbox["GruvboxFg2"].fg
-    color.bg_2 = gruvbox["GruvboxBg1"].fg
-    color.fg_2 = gruvbox["GruvboxFg1"].fg
+    color.base_bg = gruvbox["GruvboxBg1"].fg
+    color.base_fg = gruvbox["GruvboxFg1"].fg
   end
   if vim.g.colors_name == "tokyonight" then
     local config = require("tokyonight.config")
@@ -52,10 +56,8 @@ local function update_color()
     mode_color[""] = util.getColor(colors.magenta)
     mode_color.c = util.getColor(colors.yellow)
     color.mode_fg = util.getColor(colors.black)
-    color.bg_1 = util.getColor(colors.bg_search)
-    color.fg_1 = util.getColor(colors.black)
-    color.bg_2 = util.getColor(colors.bg_statusline)
-    color.fg_2 = util.getColor(colors.fg_gutter)
+    color.base_bg = util.getColor(colors.bg_statusline)
+    color.base_fg = util.getColor(colors.fg_sidebar)
   end
 end
 
@@ -64,15 +66,15 @@ line.section.left = {
     Mode = {
       provider = function()
         local mode = vim.fn.mode()
-        local color = mode_color[mode]
+        local current_color = mode_color[mode]
         local text = mode_alias[mode]
-        if color == nil then
-          color = mode_color.n
+        if current_color == nil then
+          current_color = mode_color.n
         end
         if text == nil then
           text = "UNKNOWN:" .. mode
         end
-        vim.api.nvim_command("hi GalaxyMode guibg=" .. color)
+        vim.api.nvim_command("hi GalaxyMode guibg=" .. current_color)
         return "  " .. text .. " "
       end,
       highlight = {
@@ -87,7 +89,7 @@ line.section.left = {
       provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1")},
+      highlight = { fileinfo.get_file_icon_color(), call_get_color("base_bg") },
       condition = condition.buffer_not_empty,
     },
   },
@@ -95,7 +97,7 @@ line.section.left = {
     FileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition.buffer_not_empty,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
   },
   {
@@ -103,7 +105,7 @@ line.section.left = {
       provider = function()
         return " "
       end,
-      highlight = { call_get_color("fg_2"), call_get_color("bg_2") },
+      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
   },
 }
@@ -114,7 +116,7 @@ line.section.right = {
       provider = function()
         return string.format("   %s ", fileinfo.line_column())
       end,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = { call_get_mode_color("base_fg"), call_get_color("base_bg") }
     },
   },
   {
@@ -146,7 +148,7 @@ line.section.short_line_left = {
         end
         return " " .. icon
       end,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = { call_get_color("mode_fg"), call_get_mode_color("n")},
       condition = condition_is_special_ft,
     },
   },
@@ -155,7 +157,7 @@ line.section.short_line_left = {
       provider = function()
         return buffer.get_buffer_filetype() .. " "
       end,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = "GalaxyBufferIcon",
       condition = condition_is_special_ft,
     },
   },
@@ -164,7 +166,7 @@ line.section.short_line_left = {
       provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
       condition = condition_is_not_special_ft,
     },
   },
@@ -172,7 +174,7 @@ line.section.short_line_left = {
     InactiveFileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition_is_not_special_ft,
-      highlight = { call_get_color("fg_1"), call_get_color("bg_1") },
+      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
   },
   {
@@ -180,7 +182,7 @@ line.section.short_line_left = {
       provider = function()
         return " "
       end,
-      highlight = { call_get_color("fg_2"), call_get_color("bg_2") },
+      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
   },
 }
