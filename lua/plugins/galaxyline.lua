@@ -2,6 +2,7 @@ local line = require("galaxyline")
 local fileinfo = require("galaxyline.provider_fileinfo")
 local buffer = require("galaxyline.provider_buffer")
 local condition = require("galaxyline.condition")
+local lsp = require("galaxyline.provider_lsp")
 
 -- local config = require("tokyonight.config")
 -- local colors = require("tokyonight.colors").setup(config)
@@ -99,6 +100,14 @@ line.section.left = {
       condition = condition.buffer_not_empty,
       highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
+  },
+  {
+    ActiveLSP = {
+      provider = function ()
+        return "  LSP: " .. lsp.get_lsp_client()
+      end,
+      highlight = { call_get_mode_color("c"), call_get_color("base_bg")},
+    }
   },
   {
     Blank = {
