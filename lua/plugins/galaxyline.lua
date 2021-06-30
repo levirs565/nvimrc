@@ -140,14 +140,22 @@ line.short_line_list = {"dashboard", "NvimTree", "NeogitStatus", "gitcommit"}
 line.section.short_line_left = {
   {
     BufferIcon = {
-      provider = buffer.get_buffer_type_icon,
+      provider = function ()
+        local icon = buffer.get_buffer_type_icon()
+        if icon == nil then
+          icon = ""
+        end
+        return " " .. icon
+      end,
       highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
       condition = condition_is_special_ft
     }
   },
   {
     BufferType = {
-      provider = buffer.get_buffer_filetype,
+      provider = function ()
+        return buffer.get_buffer_filetype() .. " "
+      end,
       highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
       condition = condition_is_special_ft
     }
@@ -168,6 +176,14 @@ line.section.short_line_left = {
       highlight = {call_get_color("fg_1"), call_get_color("bg_1")},
     }
   },
+  {
+    InactiveBlank = {
+      provider = function ()
+        return " "
+      end,
+      highlight = {call_get_color("fg_2"), call_get_color("bg_2")},
+    }
+  }
 }
 
 return {
