@@ -3,6 +3,7 @@ local fileinfo = require("galaxyline.provider_fileinfo")
 local buffer = require("galaxyline.provider_buffer")
 local condition = require("galaxyline.condition")
 local lsp = require("galaxyline.provider_lsp")
+local terminal = require("toggleterm.terminal")
 
 -- local config = require("tokyonight.config")
 -- local colors = require("tokyonight.colors").setup(config)
@@ -25,7 +26,7 @@ local function call_get_color(name)
   end
 end
 
-local function call_get_mode_color(mode) 
+local function call_get_mode_color(mode)
   return function()
     return mode_color[mode]
   end
@@ -62,6 +63,26 @@ local function update_color()
   end
 end
 
+local function condition_is_not_terminal_and_not_empty()
+  return vim.bo.filetype ~= "toggleterm" and condition.buffer_not_empty()
+end
+
+local function condition_is_terminal()
+  return vim.bo.filetype == "toggleterm"
+end
+
+local function terminal_provider()
+  local terminals = terminal.get_all()
+  local ids = ""
+  for _, term in ipairs(terminals) do
+    if ids ~= "" then
+      ids = ids .. ","
+    end
+    ids = ids .. term.id
+  end
+  return "  Terminal " .. vim.b.toggle_number .. " of " .. ids
+end
+
 line.section.left = {
   {
     Mode = {
@@ -91,23 +112,33 @@ line.section.left = {
         return "  " .. fileinfo.get_file_icon()
       end,
       highlight = { fileinfo.get_file_icon_color(), call_get_color("base_bg") },
-      condition = condition.buffer_not_empty,
+      condition = condition_is_not_terminal_and_not_empty,
     },
   },
   {
     FileName = {
       provider = fileinfo.get_current_file_name,
-      condition = condition.buffer_not_empty,
+      condition = condition_is_not_terminal_and_not_empty,
       highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
     },
   },
   {
+    Terminal = {
+      provider = terminal_provider,
+      condition = condition_is_terminal,
+      highlight = "GalaxyBlank",
+    },
+  },
+  {
     ActiveLSP = {
-      provider = function ()
+      provider = function()
         return "  LSP: " .. lsp.get_lsp_client()
       end,
-      highlight = { call_get_mode_color("c"), call_get_color("base_bg")},
-    }
+      highlight = { call_get_mode_color("c"), call_get_color("base_bg") },
+      condition = function()
+        return not condition_is_terminal()
+      end,
+    },
   },
   {
     Blank = {
@@ -125,7 +156,7 @@ line.section.right = {
       provider = function()
         return string.format("   %s ", fileinfo.line_column())
       end,
-      highlight = { call_get_mode_color("base_fg"), call_get_color("base_bg") }
+      highlight = { call_get_mode_color("base_fg"), call_get_color("base_bg") },
     },
   },
   {
@@ -142,8 +173,8 @@ local function condition_is_special_ft()
   return vim.fn.index(line.short_line_list, vim.bo.filetype) ~= -1
 end
 
-local function condition_is_not_special_ft()
-  return not condition_is_special_ft()
+local function condition_is_not_special_ft_and_terminal()
+  return not condition_is_special_ft() and not condition_is_terminal()
 end
 
 line.short_line_list = { "dashboard", "NvimTree", "NeogitStatus", "gitcommit" }
@@ -157,7 +188,7 @@ line.section.short_line_left = {
         end
         return " " .. icon
       end,
-      highlight = { call_get_color("mode_fg"), call_get_mode_color("n")},
+      highlight = { call_get_color("mode_fg"), call_get_mode_color("n") },
       condition = condition_is_special_ft,
     },
   },
@@ -176,14 +207,21 @@ line.section.short_line_left = {
         return "  " .. fileinfo.get_file_icon()
       end,
       highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
-      condition = condition_is_not_special_ft,
+      condition = condition_is_not_special_ft_and_terminal,
     },
   },
   {
     InactiveFileName = {
       provider = fileinfo.get_current_file_name,
-      condition = condition_is_not_special_ft,
+      condition = condition_is_not_special_ft_and_terminal,
       highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
+    },
+  },
+  {
+    InactiveTerminal = {
+      provider = terminal_provider,
+      condition = condition_is_terminal,
+      highlight = "GalaxyBlank",
     },
   },
   {
