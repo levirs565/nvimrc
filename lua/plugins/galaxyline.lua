@@ -123,7 +123,7 @@ line.section.left = {
     FileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition_is_not_terminal_and_not_empty,
-      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
+      highlight = "GalaxyBlank"
     },
   },
   {
@@ -160,7 +160,7 @@ line.section.right = {
       provider = function()
         return string.format("   %s ", fileinfo.line_column())
       end,
-      highlight = { call_get_mode_color("base_fg"), call_get_color("base_bg") },
+      highlight = "GalaxyBlank"
     },
   },
   {
@@ -210,7 +210,7 @@ line.section.short_line_left = {
       provider = function()
         return "  " .. fileinfo.get_file_icon()
       end,
-      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
+      highlight = "GalaxyInactiveBlank",
       condition = condition_is_not_special_ft_and_terminal,
     },
   },
@@ -218,14 +218,14 @@ line.section.short_line_left = {
     InactiveFileName = {
       provider = fileinfo.get_current_file_name,
       condition = condition_is_not_special_ft_and_terminal,
-      highlight = { call_get_color("base_fg"), call_get_color("base_bg") },
+      highlight = "GalaxyInactiveBlank"
     },
   },
   {
     InactiveTerminal = {
       provider = terminal_provider,
       condition = condition_is_terminal,
-      highlight = "GalaxyBlank",
+      highlight = "GalaxyInactiveBlank",
     },
   },
   {
