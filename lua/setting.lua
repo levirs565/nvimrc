@@ -12,6 +12,7 @@ vim.o.updatetime = 1000
 vim.o.completeopt = "menu,menuone,preview,noinsert,noselect"
 vim.o.relativenumber = true
 vim.o.mouse = "a"
+vim.o.hidden = true
 
 if not vim.o.shell == "cmd.exe" then
   vim.o.shcf = "-c"

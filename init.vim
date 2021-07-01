@@ -26,7 +26,6 @@ Plug 'glepnir/lspsaga.nvim'
 Plug 'rktjmp/lush.nvim'
 Plug 'npxbr/gruvbox.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'folke/trouble.nvim'
@@ -38,6 +37,7 @@ Plug 'lewis6991/gitsigns.nvim'
 " TODO: Use 'iamcco/markdown-preview.nvim', see https://github.com/iamcco/markdown-preview.nvim/pull/342
 Plug 'GregBowyer/markdown-preview.nvim', { 'branch': 'katex', 'do': 'cd app && pnpm install --shamefully-hoist'  }
 Plug 'folke/tokyonight.nvim'
+Plug 'akinsho/nvim-toggleterm.lua'
 call plug#end()
 
 lua require("plugins.comment")
@@ -48,7 +48,6 @@ lua require("plugins.lspconfig")
 lua require("plugins.lspsaga")
 lua require("plugins.dashboard")
 lua require("plugins.galaxyline")
-lua require("plugins.floaterm")
 lua require("plugins.trouble")
 lua require("plugins.todo")
 lua require("plugins.format")
@@ -56,6 +55,7 @@ lua require("plugins.signature")
 lua require("plugins.neogit")
 lua require("plugins.gitsigns")
 lua require("plugins.markdown")
+lua require("plugins.toggleterm")
 lua require("mapping")
 lua require("window")
 
