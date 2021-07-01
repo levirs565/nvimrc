@@ -72,6 +72,10 @@ local function condition_is_terminal()
 end
 
 local function terminal_provider()
+  if vim.b.toggle_number == nil then
+    return ""
+  end
+
   local terminals = terminal.get_all()
   local ids = ""
   for _, term in ipairs(terminals) do
