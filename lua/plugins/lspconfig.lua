@@ -13,6 +13,10 @@ lspconfig.hls.setup({
 lspconfig.tsserver.setup({
   on_attach = on_attach,
 })
+lspconfig.vuels.setup({
+  cmd = { "vls.cmd" },
+  on_attach = on_attach,
+})
 
 local system_name
 if vim.fn.has("mac") == 1 then
