@@ -20,6 +20,15 @@ vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_follow = 1
+vim.g.nvim_tree_lsp_diagnostics = 1
+vim.g.nvim_tree_window_picker_exclude = {
+    filetype = {
+      "packer",
+      "qf",
+      "help",
+      "toggleterm"
+    }
+  }
 
 vim.g.nvim_tree_show_icons = {
   git = 0,
