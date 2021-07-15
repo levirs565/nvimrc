@@ -15,6 +15,12 @@ vim.g.nvim_tree_width_allow_resize = 1
 vim.g.nvim_tree_disable_netrw = 1
 vim.g.nvim_tree_hijack_netrw = 1
 vim.g.nvim_web_devicons = 1
+vim.g.nvim_tree_update_cwd = 1
+vim.g.nvim_tree_add_trailing = 1
+vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_follow = 1
+
 vim.g.nvim_tree_show_icons = {
   git = 0,
   folders = 1,
