@@ -38,6 +38,9 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'GregBowyer/markdown-preview.nvim', { 'branch': 'katex', 'do': 'cd app && pnpm install --shamefully-hoist'  }
 Plug 'folke/tokyonight.nvim'
 Plug 'akinsho/nvim-toggleterm.lua'
+" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+Plug 'windwp/nvim-ts-autotag'
 call plug#end()
 
 lua require("plugins.comment")
@@ -56,6 +59,7 @@ lua require("plugins.neogit")
 lua require("plugins.gitsigns")
 lua require("plugins.markdown")
 lua require("plugins.toggleterm")
+lua require("plugins.treesitter")
 lua require("mapping")
 lua require("window")
 
