@@ -9,7 +9,6 @@ lua require("setting")
 let g:srootdir=expand("<sfile>:p:h")
 
 call plug#begin(g:srootdir . '/plugged')
-Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'terrortylor/nvim-comment'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
